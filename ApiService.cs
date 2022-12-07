@@ -12,8 +12,9 @@ public static class ApiService {
     private static bool _run = true;
     
     public static async Task Start(CancellationToken cancellationToken) {
-        Listener.Prefixes.Add("http://localhost:8080/");
+        Listener.Prefixes.Add("http://*:8080/");
         Listener.Start();
+        Logger.Info("Started API service");
 
         cancellationToken.Register(() => _run = false);  // Stop the listener when the token is cancelled
 
