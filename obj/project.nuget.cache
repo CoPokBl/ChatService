@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Wv38l63eJ95+9+YME71GGZnntM5b+9RRJLA8T+ncCBLW/w9YERThNB2fTsm1hrO95qlvrlevqD8cYww+Abxqqg==",
+  "success": true,
+  "projectFilePath": "/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/ChatService.csproj",
+  "expectedPackageFiles": [
+    "/home/copokbl/.nuget/packages/generalpurposelib/1.1.2/generalpurposelib.1.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

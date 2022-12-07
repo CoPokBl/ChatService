@@ -1,0 +1,17 @@
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/ChatService
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/ChatService.deps.json
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/ChatService.runtimeconfig.json
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/ChatService.dll
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/ref/ChatService.dll
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/ChatService.pdb
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.csproj.AssemblyReference.cache
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.GeneratedMSBuildEditorConfig.editorconfig
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.AssemblyInfoInputs.cache
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.AssemblyInfo.cs
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.csproj.CoreCompileInputs.cache
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.dll
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ref/ChatService.dll
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.pdb
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.genruntimeconfig.cache
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/bin/Debug/net6.0/GeneralPurposeLib.dll
+/media/copokbl/Big Boi/Documents/Coding/C#/ChatService/obj/Debug/net6.0/ChatService.csproj.CopyComplete
