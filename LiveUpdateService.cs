@@ -10,7 +10,7 @@ public static class LiveUpdateService {
     private static readonly List<OnlineUser> OnlineUsers = new();
     public static event Action<OnlineUser>? OnUserConnected;
     public static event Action<OnlineUser>? OnUserDisconnected;
-    public static List<OnlineUser> GetOnlineUsers() => OnlineUsers;
+    public static List<OnlineUser> GetOnlineUsers(string channel) => OnlineUsers.Where(u => u.Channel == channel).ToList();
 
     public static void UserConnected(OnlineUser u) {
         OnlineUsers.Add(u);

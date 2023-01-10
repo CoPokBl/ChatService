@@ -5,19 +5,19 @@ namespace ChatService;
 public class Message {
     
     [JsonPropertyName("MessageId")]
-    public string MessageId { get; set; }
-    
+    public string MessageId { get; set; } = null!;
+
     [JsonPropertyName("CreatorName")]
-    public string CreatorName { get; set; }
-    
+    public string CreatorName { get; set; } = null!;
+
     [JsonPropertyName("Text")]
-    public string Text { get; set; }
-    
+    public string Text { get; set; } = null!;
+
     [JsonPropertyName("CreatedAt")]
     public long CreatedAt { get; set; }
     
     [JsonPropertyName("Signature")]
-    public string Signature { get; set; }
+    public string Signature { get; set; } = null!;
 
     public Message(SentMessage msg) {
         CreatorName = msg.CreatorName;

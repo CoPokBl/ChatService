@@ -44,13 +44,13 @@ public static class ApiService {
                         break;
 
                     case "online": {
-                        if (path.Length != 1) {
-                            throw new BadRequestException("No channel specified (Ex. /channel/SomeRandomChannel)");
+                        if (path.Length != 2) {
+                            throw new BadRequestException("No channel specified (Ex. /online/SomeRandomChannel)");
                         }
                         if (request.HttpMethod.ToUpper() != "GET") {
                             throw new BadRequestException("Only GET requests are allowed");
                         }
-                        responseString = LiveUpdateService.GetOnlineUsers().ToJson();
+                        responseString = LiveUpdateService.GetOnlineUsers(path[1]).ToJson();
                         break;
                     }
 
@@ -75,8 +75,14 @@ public static class ApiService {
                                 string channel = path[1];
                                 string messageText = await new StreamReader(request.InputStream).ReadToEndAsync();
                                 Logger.Debug(messageText);
-                                Message message = new(messageText.FromJson<SentMessage>() ??
-                                                      throw new BadRequestException("Invalid message"));
+                                SentMessage? msg;
+                                try {
+                                    msg = messageText.FromJson<SentMessage>();
+                                }
+                                catch (Exception) {
+                                    throw new BadRequestException("Invalid JSON");
+                                }
+                                Message message = new(msg ?? throw new BadRequestException("Invalid message"));
                                 MessageHandler.AddMessage(channel, message);
                                 responseString = message.ToJson();
                                 break;

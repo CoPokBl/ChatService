@@ -6,10 +6,8 @@ namespace ChatService;
 
 public class LiveUpdateConnection {
     private readonly Socket _socket;
-    private bool _isConnected;
-    private CancellationTokenSource _cancellationTokenSource;
-    private CancellationToken _globalCancellationToken;
-    private List<string> _sendMsgQueue;
+    private readonly CancellationTokenSource _cancellationTokenSource;
+    private readonly List<string> _sendMsgQueue;
     private OnlineUser? _user;
 
     // Info
@@ -23,19 +21,17 @@ public class LiveUpdateConnection {
         _pubKey = "";
         _channel = "";
         _cancellationTokenSource = new CancellationTokenSource();
-        _globalCancellationToken = globalCancellationToken;
         _sendMsgQueue = new List<string>();
 
         // Stop the connection if the global token is cancelled
-        _globalCancellationToken.Register(() => {
+        globalCancellationToken.Register(() => {
             _cancellationTokenSource.Cancel();
         });
     }
     
     public Task HandleConnection() {
         Logger.Debug($"[{_username}] Handling connection");
-        _isConnected = true;
-        
+
         _cancellationTokenSource.Token.Register(() => {
             LiveUpdateService.UserDisconnected(_user!);
             try {
@@ -72,7 +68,6 @@ public class LiveUpdateConnection {
             if (!KeySigning.VerifySignature(_pubKey, signature, textToSign)) {
                 Logger.Debug($"[{_username}] Signature verification failed");
                 _cancellationTokenSource.Cancel();
-                _isConnected = false;
                 return Task.CompletedTask;
             }
 
@@ -96,17 +91,17 @@ public class LiveUpdateConnection {
             LiveUpdateService.OnUserConnected += UserOnline;
             LiveUpdateService.OnUserDisconnected += UserOffline;
 
-            Logger.Debug($"[{_username}] {_username} connected");
+            Logger.Debug($"[{_username}] {_username} connected to {_channel}");
             _user = new OnlineUser {
                 Username = _username,
-                PublicKey = _pubKey
+                PublicKey = _pubKey,
+                Channel = _channel
             };
             LiveUpdateService.UserConnected(_user);
         }
         catch (Exception e) {
             Logger.Debug($"[{_username}] Socket disconnect: " + e.Message);
             _cancellationTokenSource.Cancel();
-            _isConnected = false;
         }
 
         // Wait until the cancellation token is cancelled
@@ -181,7 +176,6 @@ public class LiveUpdateConnection {
         }
         catch (Exception e) {
             Logger.Debug($"[{_username}] Socket disconnect: " + e.Message);
-            _isConnected = false;
             _cancellationTokenSource.Cancel();
         }
         Logger.Debug($"[{_username}] Finished sending message to " + _username);
@@ -227,7 +221,6 @@ public class LiveUpdateConnection {
         }
         catch (Exception e) {
             Logger.Debug($"[{_username}] Socket disconnect: " + e.Message);
-            _isConnected = false;
             _cancellationTokenSource.Cancel();
         }
         Logger.Debug($"[{_username}] Finished sending offline user to " + _username);
@@ -273,7 +266,6 @@ public class LiveUpdateConnection {
         }
         catch (Exception e) {
             Logger.Debug($"[{_username}] Socket disconnect: " + e.Message);
-            _isConnected = false;
             _cancellationTokenSource.Cancel();
         }
         Logger.Debug($"[{_username}] Finished sending offline user to " + _username);

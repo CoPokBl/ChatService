@@ -1,6 +1,7 @@
 namespace ChatService; 
 
 public class OnlineUser {
-    public string Username { get; set; }
-    public string PublicKey { get; set; }
+    public string Username { get; init; } = null!;
+    public string PublicKey { get; init; } = null!;
+    public string Channel { get; init; } = null!;
 }
